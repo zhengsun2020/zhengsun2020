@@ -58,9 +58,9 @@ sed "s/IBM_APP_NAME/${IBM_APP_NAME}/" ./$IBM_APP_NAME/manifest.yml -i
 sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 
 # v2ray config
-#cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
+cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
-cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
+#cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
 #b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
@@ -112,7 +112,7 @@ chmod +x ./$IBM_APP_NAME/d.sh
 #cat ./$IBM_APP_NAME/zds.sh
 
 
-#cat ./$IBM_APP_NAME/d.sh
+cat ./$IBM_APP_NAME/d.sh
 #exit 0
 
 if [ ! -f "$CF" ]; then
