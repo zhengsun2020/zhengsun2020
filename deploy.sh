@@ -62,11 +62,11 @@ sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
 cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
-b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
+#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
-b_dec=$(($((16#$b_hex)) & $((2#11111000))))
+#b_dec=$(($((16#$b_hex)) & $((2#11111000))))
 # write 1 byte back at offset last HEX
-printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
+#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
 #unuse v2ctl 
 #cp -vf ./config/v2ctl ./$IBM_APP_NAME/
