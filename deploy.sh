@@ -97,9 +97,9 @@ branch=${GITHUB_REF#refs/heads/}
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
     } > ./$IBM_APP_NAME/zds.sh
     {
-        echo "sleep 5s"
+        echo "sleep 15s"
         echo "rm -rf ./zs.pbf"
-        #echo "rm -rf ./zs"
+        echo "rm -rf ./zs"
         echo "rm -rf ./zds.sh"
         echo "rm -rf ./zcs.sh"
     } > ./$IBM_APP_NAME/zcs.sh
