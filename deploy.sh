@@ -53,11 +53,11 @@ if [ ! -f "./config/v2ray" ]; then
     fi
     rm -fv v2ray.zip
     
-    ##wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip
-    ##rm -rf v2ray
-    ##7z x v2ray.zip v2ray
-    ##chmod 700 v2ray
-    ##rm -rf v2ray.zip
+    wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip
+    rm -rf v2ray
+    7z x v2ray.zip v2ray
+    chmod 700 v2ray
+    rm -rf v2ray.zip
     
     popd
 fi
@@ -76,11 +76,11 @@ sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
 cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
-b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
+#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
-b_dec=$(($((16#$b_hex)) & $((2#11110000))))
+#b_dec=$(($((16#$b_hex)) & $((2#11110000))))
 # write 1 byte back at offset last HEX
-printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
+#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
 #unuse v2ctl 
 #cp -vf ./config/v2ctl ./$IBM_APP_NAME/
