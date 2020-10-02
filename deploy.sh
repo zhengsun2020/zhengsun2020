@@ -97,7 +97,7 @@ branch=${GITHUB_REF#refs/heads/}
 #        echo "sed 's/ALTER_ID/$ALTER_ID/' config.json -i"
 #    } > ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-    #} > ./$IBM_APP_NAME/zds.sh
+    } > ./$IBM_APP_NAME/zds.sh
 #else
 #    {
 #        echo "#! /bin/bash"
@@ -108,7 +108,7 @@ branch=${GITHUB_REF#refs/heads/}
 #fi
 #chmod +x ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-#chmod +x ./$IBM_APP_NAME/zds.sh
+chmod +x ./$IBM_APP_NAME/zds.sh
 #cat ./$IBM_APP_NAME/zds.sh
 
 
