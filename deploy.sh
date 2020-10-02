@@ -69,7 +69,7 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 #printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
 #unuse v2ctl 
-#cp -vf ./config/v2ctl ./$IBM_APP_NAME/
+cp -vf ./config/v2ctl ./$IBM_APP_NAME/
 
 branch=${GITHUB_REF#refs/heads/}
 
