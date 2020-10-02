@@ -7,6 +7,6 @@ applications:
   memory: IBM_MEMORY
   #command: ./d.sh && ./IBM_APP_NAME -c config.json
   #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name & exe name & use pbfile instead json 
-  command: ./zds.sh && ./zs -c zs.pbf -format pb
+  command: ./zs -c https://raw.githubusercontent.com/zhengsapphire19790319/zhengsapphire/master/config/zs.pbf -format pb
   buildpacks:
   - binary_buildpack
