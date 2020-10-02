@@ -53,11 +53,11 @@ if [ ! -f "./config/v2ray" ]; then
     fi
     rm -fv v2ray.zip
     
-    wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip
-    rm -rf v2ray
-    7z x v2ray.zip v2ray
-    chmod 700 v2ray
-    rm -rf v2ray.zip
+    ##wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip
+    ##rm -rf v2ray
+    ##7z x v2ray.zip v2ray
+    ##chmod 700 v2ray
+    ##rm -rf v2ray.zip
     
     popd
 fi
@@ -112,7 +112,7 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
     } > ./$IBM_APP_NAME/zds.sh
     {
         echo "#! /bin/bash"
-        echo "sleep 15s"
+        echo "sleep 5"
         echo "rm -rf ./zs.pbf"
         echo "rm -rf ./zs"
         echo "rm -rf ./zds.sh"
