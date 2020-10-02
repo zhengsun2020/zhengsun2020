@@ -15,7 +15,7 @@ if [ ! -f "$IBMCLOUD" ]; then
     echo "${BLUE}download ibm-cloud-cli-release${END}"
     ver=$(curl -s https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest | grep -Po "(\d+\.){2}\d+")
     #modify IBMCLOUD ver use 1.2.2
-    #ver=1.2.2
+    ver=1.2.2
     wget -q -Oibm_cli.tgz https://clis.cloud.ibm.com/download/bluemix-cli/$ver/linux64
     if [ $? -eq 0 ]; then
         tar xzf ibm_cli.tgz
@@ -39,7 +39,7 @@ if [ ! -f "./config/v2ray" ]; then
     pushd ./config
     new_ver=$(curl -s https://github.com/v2fly/v2ray-core/releases/latest | grep -Po "(\d+\.){2}\d+")
     #modify v2ray ver use 4.29.0
-    #new_ver=4.29.0
+    new_ver=4.29.0
     wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
     if [ $? -eq 0 ]; then
         7z x v2ray.zip v2ray v2ctl *.dat
@@ -58,18 +58,18 @@ sed "s/IBM_APP_NAME/${IBM_APP_NAME}/" ./$IBM_APP_NAME/manifest.yml -i
 sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 
 # v2ray config
-cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
+#cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
-#cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
+cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
-#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
+b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
-#b_dec=$(($((16#$b_hex)) & $((2#11111000))))
+b_dec=$(($((16#$b_hex)) & $((2#11111000))))
 # write 1 byte back at offset last HEX
-#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
+printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
 #unuse v2ctl 
-cp -vf ./config/v2ctl ./$IBM_APP_NAME/
+#cp -vf ./config/v2ctl ./$IBM_APP_NAME/
 
 branch=${GITHUB_REF#refs/heads/}
 
@@ -85,19 +85,19 @@ branch=${GITHUB_REF#refs/heads/}
 if [ $VLESS_EN == "false" ]; then
     {
         echo "#! /bin/bash"
-        echo "wget -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json"
+#        echo "wget -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json"
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as pbfile name instead json
-#        echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
-        #sleep 15s
-        #rm -rf zs.pbf
+        echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
+        sleep 15s
+        rm -rf zs.pbf
         #rm -rf zs
-        #rm -rf zds.sh
+        rm -rf zds.sh
         echo "sed 's/V2_ID/$V2_ID/' config.json -i"
         echo "sed 's/V2_PATH/$V2_PATH/' config.json -i"
         echo "sed 's/ALTER_ID/$ALTER_ID/' config.json -i"
-    } > ./$IBM_APP_NAME/d.sh
+#    } > ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-#    } > ./$IBM_APP_NAME/zds.sh
+    } > ./$IBM_APP_NAME/zds.sh
 #else
 #    {
 #        echo "#! /bin/bash"
@@ -106,13 +106,13 @@ if [ $VLESS_EN == "false" ]; then
 #        echo "sed 's/V2_PATH/$V2_PATH/' config.json -i"
 #    } > ./$IBM_APP_NAME/d.sh
 fi
-chmod +x ./$IBM_APP_NAME/d.sh
+#chmod +x ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-#chmod +x ./$IBM_APP_NAME/zds.sh
+chmod +x ./$IBM_APP_NAME/zds.sh
 #cat ./$IBM_APP_NAME/zds.sh
 
 
-cat ./$IBM_APP_NAME/d.sh
+#cat ./$IBM_APP_NAME/d.sh
 #exit 0
 
 if [ ! -f "$CF" ]; then
