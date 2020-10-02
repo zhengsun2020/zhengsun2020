@@ -34,44 +34,56 @@ ALTER_ID=${ALTER_ID:-"1"}
 VLESS_EN=${VLESS_EN:-"false"}
 mkdir -p $IBM_APP_NAME
 
-if [ ! -f "./config/v2ray" ]; then
-    echo "${BLUE}download v2ray${END}"
-    pushd ./config
-    new_ver=$(curl -s https://github.com/v2fly/v2ray-core/releases/latest | grep -Po "(\d+\.){2}\d+")
-    #modify v2ray ver use 4.29.0
-    new_ver=4.29.0
-    wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
-    if [ $? -eq 0 ]; then
-        7z x v2ray.zip v2ray v2ctl *.dat
-        chmod 700 v2ctl v2ray
-    else
-        echo "${RED}download new version failed!${END}"
-        exit 1
-    fi
-    rm -fv v2ray.zip
-    popd
-fi
+#if [ ! -f "./config/v2ray" ]; then
+#    echo "${BLUE}download v2ray${END}"
+#    pushd ./config
+#    new_ver=$(curl -s https://github.com/v2fly/v2ray-core/releases/latest | grep -Po "(\d+\.){2}\d+")
+#    #modify v2ray ver use 4.29.0
+#    new_ver=4.29.0
+#    wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
+#    if [ $? -eq 0 ]; then
+#        7z x v2ray.zip v2ray v2ctl *.dat
+#        chmod 700 v2ctl v2ray
+#    else
+#        echo "${RED}download new version failed!${END}"
+#        exit 1
+#    fi
+#    rm -fv v2ray.zip
+#    popd
+#fi
 
 # cloudfoundry config
 cp -rvf ./config/manifest.yml ./$IBM_APP_NAME/
 sed "s/IBM_APP_NAME/${IBM_APP_NAME}/" ./$IBM_APP_NAME/manifest.yml -i
 sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 
+branch=${GITHUB_REF#refs/heads/}
+
+wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip"
+
+unzip v2ray.zip
+
+chmod 700 v2ray
+cp -vf v2ray ./$IBM_APP_NAME/zs
+
+rm -rf v2ray.zip
+rm -rf v2ray
+
 # v2ray config
 #cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
-cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
+#cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
-b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
+#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
-b_dec=$(($((16#$b_hex)) & $((2#11111000))))
+#b_dec=$(($((16#$b_hex)) & $((2#11111000))))
 # write 1 byte back at offset last HEX
-printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
+#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
 #unuse v2ctl 
 #cp -vf ./config/v2ctl ./$IBM_APP_NAME/
 
-branch=${GITHUB_REF#refs/heads/}
+
 
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as pbfile name instead json and gen pdfile
 ##wget -q -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json
