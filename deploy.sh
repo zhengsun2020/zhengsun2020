@@ -83,11 +83,11 @@ branch=${GITHUB_REF#refs/heads/}
 ##cat ./$IBM_APP_NAME/zs.pbf
 
 #if [ $VLESS_EN == "false" ]; then
-    {
-        echo "#! /bin/bash"
+    #{
+    #    echo "#! /bin/bash"
 #        echo "wget -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json"
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as pbfile name instead json
-        echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
+        #echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
         #sleep 15s
         #rm -rf zs.pbf
         #rm -rf zs
@@ -97,7 +97,7 @@ branch=${GITHUB_REF#refs/heads/}
 #        echo "sed 's/ALTER_ID/$ALTER_ID/' config.json -i"
 #    } > ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-    } > ./$IBM_APP_NAME/zds.sh
+    #} > ./$IBM_APP_NAME/zds.sh
 #else
 #    {
 #        echo "#! /bin/bash"
@@ -108,7 +108,7 @@ branch=${GITHUB_REF#refs/heads/}
 #fi
 #chmod +x ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-chmod +x ./$IBM_APP_NAME/zds.sh
+#chmod +x ./$IBM_APP_NAME/zds.sh
 #cat ./$IBM_APP_NAME/zds.sh
 
 
