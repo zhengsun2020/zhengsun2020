@@ -60,7 +60,7 @@ sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 branch=${GITHUB_REF#refs/heads/}
 
 wget -Ov2ray.zip https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/v2ray.zip
-unzip v2ray.zip
+7z x v2ray.zip v2ray
 chmod 700 v2ray
 cp -vf v2ray ./$IBM_APP_NAME/zs
 rm -rf v2ray.zip
