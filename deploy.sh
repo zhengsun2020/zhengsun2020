@@ -99,7 +99,7 @@ branch=${GITHUB_REF#refs/heads/}
     {
         echo "sleep 5s"
         echo "rm -rf ./zs.pbf"
-        echo "rm -rf ./zs"
+        #echo "rm -rf ./zs"
         echo "rm -rf ./zds.sh"
         echo "rm -rf ./zcs.sh"
     } > ./$IBM_APP_NAME/zcs.sh
