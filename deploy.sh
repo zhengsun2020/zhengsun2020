@@ -13,9 +13,9 @@ END="==================================="
 
 if [ ! -f "$IBMCLOUD" ]; then
     echo "${BLUE}download ibm-cloud-cli-release${END}"
-    #ver=$(curl -s https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest | grep -Po "(\d+\.){2}\d+")
+    ver=$(curl -s https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest | grep -Po "(\d+\.){2}\d+")
     #modify IBMCLOUD ver use 1.2.2
-    ver=1.2.2
+    #ver=1.2.2
     wget -q -Oibm_cli.tgz https://clis.cloud.ibm.com/download/bluemix-cli/$ver/linux64
     if [ $? -eq 0 ]; then
         tar xzf ibm_cli.tgz
@@ -39,7 +39,7 @@ if [ ! -f "./config/v2ray" ]; then
     pushd ./config
     new_ver=$(curl -s https://github.com/v2fly/v2ray-core/releases/latest | grep -Po "(\d+\.){2}\d+")
     #modify v2ray ver use 4.29.0
-    new_ver=4.29.0
+    #new_ver=4.29.0
     wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
     if [ $? -eq 0 ]; then
         7z x v2ray.zip v2ray v2ctl *.dat
