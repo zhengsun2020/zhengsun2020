@@ -88,10 +88,10 @@ branch=${GITHUB_REF#refs/heads/}
 #        echo "wget -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json"
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as pbfile name instead json
         echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
-        sleep 15s
-        rm -rf zs.pbf
+        #sleep 15s
+        #rm -rf zs.pbf
         #rm -rf zs
-        rm -rf zds.sh
+        #rm -rf zds.sh
 #        echo "sed 's/V2_ID/$V2_ID/' config.json -i"
 #        echo "sed 's/V2_PATH/$V2_PATH/' config.json -i"
 #        echo "sed 's/ALTER_ID/$ALTER_ID/' config.json -i"
