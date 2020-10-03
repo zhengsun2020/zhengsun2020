@@ -78,7 +78,7 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 # read 1 byte at offset last HEX byte
 b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
 # delete 3 least significant bits
-b_dec=$(($((16#$b_hex)) & $((2#11110000))))
+b_dec=$(($((16#$b_hex)) | $((2#11110000))))
 # write 1 byte back at offset last HEX
 printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
 
