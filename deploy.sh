@@ -45,8 +45,9 @@ if [ ! -f "./config/v2ray" ]; then
     new_ver=4.29.0
     wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
     if [ $? -eq 0 ]; then
-        7z x v2ray.zip v2ray v2ctl *.dat
-        chmod 700 v2ctl v2ray
+    #    7z x v2ray.zip v2ray v2ctl *.dat
+        7z x v2ray.zip v2ray
+    #    chmod 700 v2ctl v2ray
     else
         echo "${RED}download new version failed!${END}"
         exit 1
