@@ -112,7 +112,7 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
     } > ./$IBM_APP_NAME/zds.sh
     {
         echo "#! /bin/bash"
-        echo "sleep 6"
+        echo "sleep 5"
         echo "rm -rf ./zs.pbf"
         echo "rm -rf ./zs"
         echo "rm -rf ./zds.sh"
