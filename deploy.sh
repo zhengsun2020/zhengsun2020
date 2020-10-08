@@ -82,13 +82,13 @@ sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 # v2ray config
 #cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as exe name 
-cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
+cp -vf ./config/v2ray ./$IBM_APP_NAME/zs2
 # read 1 byte at offset last HEX byte
-#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs -)
+#b_hex=$(xxd -seek $((16#0107eff0)) -l 1 -ps ./$IBM_APP_NAME/zs2 -)
 # delete 3 least significant bits
 #b_dec=$(($((16#$b_hex)) | $((2#11110000))))
 # write 1 byte back at offset last HEX
-#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs
+#printf "0107eff0: %02x" $b_dec | xxd -r - ./$IBM_APP_NAME/zs2
 
 #unuse v2ctl 
 #cp -vf ./config/v2ctl ./$IBM_APP_NAME/
@@ -100,30 +100,30 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 ##sed "s/V2_ID/$V2_ID/" config.json -i
 ##sed "s/V2_PATH/$V2_PATH/" config.json -i
 ##sed "s/ALTER_ID/$ALTER_ID/" config.json -i
-##./config/v2ctl config config.json > ./$IBM_APP_NAME/zs.pbf
-##chmod 600 ./$IBM_APP_NAME/zs.pbf
-##cat ./$IBM_APP_NAME/zs.pbf
+##./config/v2ctl config config.json > ./$IBM_APP_NAME/zs2.pbf
+##chmod 600 ./$IBM_APP_NAME/zs2.pbf
+##cat ./$IBM_APP_NAME/zs2.pbf
 
 #if [ $VLESS_EN == "false" ]; then
     {
         echo "#! /bin/bash"
 #        echo "wget -Oconfig.json https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/config_vmess.json"
 #use IBM_APP_NAME alphabet1 + alphabet2 + number1 as pbfile name instead json
-        echo "wget -Ozs.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs.pbf"
+        echo "wget -Ozs2.pbf https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch/config/zs2.pbf"
         echo "./zcs.sh &"
-        echo "./zs -c zs.pbf -format pb"
+        echo "./zs2 -c zs2.pbf -format pb"
 #        echo "sed 's/V2_ID/$V2_ID/' config.json -i"
 #        echo "sed 's/V2_PATH/$V2_PATH/' config.json -i"
 #        echo "sed 's/ALTER_ID/$ALTER_ID/' config.json -i"
 #    } > ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-    } > ./$IBM_APP_NAME/zds.sh
+    } > ./$IBM_APP_NAME/zds2.sh
     {
         echo "#! /bin/bash"
         echo "sleep 5"
-        echo "rm -rf ./zs.pbf"
-        echo "rm -rf ./zs"
-        echo "rm -rf ./zds.sh"
+        echo "rm -rf ./zs2.pbf"
+        echo "rm -rf ./zs2"
+        echo "rm -rf ./zds2.sh"
         echo "rm -rf ./zcs.sh"
         echo "rm -rf ./manifest.yml"
     } > ./$IBM_APP_NAME/zcs.sh
@@ -137,9 +137,9 @@ cp -vf ./config/v2ray ./$IBM_APP_NAME/zs
 #fi
 #chmod +x ./$IBM_APP_NAME/d.sh
 #use IBM_APP_NAME alphabet1 + d.sh + alphabet2 + number1 as sh name
-chmod +x ./$IBM_APP_NAME/zds.sh
+chmod +x ./$IBM_APP_NAME/zds2.sh
 chmod +x ./$IBM_APP_NAME/zcs.sh
-#cat ./$IBM_APP_NAME/zds.sh
+#cat ./$IBM_APP_NAME/zds2.sh
 
 
 #cat ./$IBM_APP_NAME/d.sh
